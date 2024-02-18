@@ -1,16 +1,23 @@
 import './App.css'
-import Footer from './components/Footer'
+import { Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import About from './pages/About'
 import Header from './components/Header'
-import Hero from './components/Hero'
-import ProductCard from './components/ProductCard'
-import Products from './components/Products'
+import Footer from './components/Footer'
+import NotFound from './pages/NotFound'
+import ProductDetail from './pages/ProductDetail'
 
 function App() {
   return (
     <div>
       <Header />
-      <Hero />
-      <Products />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/product/:productId' element={<ProductDetail />} />
+
+        <Route path='/*' element={<NotFound />} />
+      </Routes>
       <Footer />
     </div>
   )

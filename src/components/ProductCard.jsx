@@ -1,26 +1,29 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-const ProductCard = () => {
-    const originalPrice = 7000;
-    const discountInPercentage = 37;
+const ProductCard = ({id, img, name, desc, price, discountPercentage}) => {        // props / properties
+    const originalPrice = price;
+    const discountInPercentage = discountPercentage;
 
   return (
-    <div className='product-card'>
-        <div className="product-img">
-            <img src="https://rukminim2.flixcart.com/image/612/612/kazor680/cycle/4/f/d/scout-26t-sea-blue-black-for-ride-18-leader-single-speed-original-imafsf6wr2yxdfng.jpeg?q=70" alt="" />
+    <Link to={'/product/' + id} >
+        <div className='product-card'>
+            <div className="product-img">
+                <img src={img} alt="" />
+            </div>
+            <div className="product-name">
+                {name}
+            </div>
+            <div className="product-desc">
+                {desc}
+            </div>
+            <div className="product-price">
+                <span className="product-price-final">₹{originalPrice * ((100-discountInPercentage)/100)}</span>
+                <span className="product-price-original">₹{originalPrice}</span>
+                <span className="product-price-discount">{discountInPercentage}% off</span>
+            </div>
         </div>
-        <div className="product-name">
-            LEADER Scout 26T SEA Blue BLACK
-        </div>
-        <div className="product-desc">
-            Single Speed, Blue, Black
-        </div>
-        <div className="product-price">
-            <span className="product-price-final">₹{originalPrice * ((100-discountInPercentage)/100)}</span>
-            <span className="product-price-original">₹{originalPrice}</span>
-            <span className="product-price-discount">{discountInPercentage}% off</span>
-        </div>
-    </div>
+    </Link>
   )
 }
 
